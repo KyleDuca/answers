@@ -1,0 +1,195 @@
+<html>
+  <head>
+
+  </head>
+
+  <body>
+
+  <h3 id="code-samples">Problem to Solution</h3>
+  <hr class="yellow">
+  
+  <div class="box">
+    <h4>Object Oriented Programming - Image Blur #1</h4>
+    <p>
+      This challenge takes the concept of an Image and builds a class for it using object-oriented programming techniques. This Image will use a two-dimentional array to store the pixel values for the image.
+    </p>   
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#1">Show</button>
+
+  </div>
+
+  <div class="box">
+    <div id="1" class="collapse">
+<pre><code class="language-ruby">class Image 
+  def initialize(array)  
+    @array = array  
+  end  
+  
+  def output_image
+    @array.each do |i|
+       puts &quot;#{i.join('')}&quot;
+    end
+  end 
+end  
+
+
+image = Image.new([
+  [0, 0, 1, 1],
+  [0, 0, 0, 0],
+  [0, 1, 0, 0],
+  [1, 0, 0, 1]
+])
+
+image.output_image
+</pre></code>
+    </div>
+  </div>
+    <br class="clear" />
+
+
+  <div class="box">
+    <h4>Image Transformation - Image Blur #2</h4>
+    <p>
+    This challenge builds off the previous challenge and will build a data transformation on a data representation of an image. This will continue to work with object-oriented programming and multidimensional arrays.
+    </p>
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#2">Show</button>
+  </div>
+
+
+
+  <div class="box">
+    <div id="2" class="collapse">
+
+<pre><code class="language-ruby">class Image 
+  def initialize(array)  
+    @array = array  
+  end  
+
+    def blur
+        arr = []
+        array_track = -1
+        
+        @array.each do |subarray|
+            
+            subarray_track = -1
+            array_track += 1
+            subarr = []
+            
+            subarray.each do |i|
+                
+                subarray_track += 1
+                
+                if i == 1
+                    subarr &lt;&lt; 1
+                elsif subarray[subarray_track + 1] == 1 &amp;&amp; subarray_track != subarray.length
+                    subarr &lt;&lt; 1
+                elsif subarray[subarray_track - 1] == 1 &amp;&amp; subarray_track &gt; 0
+                    subarr &lt;&lt; 1
+                elsif @array[array_track - 1][subarray_track] == 1 &amp;&amp; array_track &gt; 0  
+                    subarr &lt;&lt; 1
+                elsif @array[array_track + 1].nil? == false &amp;&amp; @array[array_track + 1][subarray_track] == 1
+                    subarr &lt;&lt; 1
+                else 
+                    subarr &lt;&lt; 0
+                end
+            end
+            arr &lt;&lt; subarr
+        end
+        arr.each do |i|
+            puts &quot;#{i.join('')}&quot;
+        end
+    end
+end  
+
+image = Image.new([
+  [0, 0, 0, 0],
+  [0, 1, 0, 0],
+  [0, 0, 0, 0],
+  [0, 1, 0, 1]
+])
+
+image.blur</pre></code>
+    </div>
+  </div>
+
+    <br class="clear" />
+
+
+
+
+
+  <div class="box">
+    <h4>Manhattan Distance - Image Blur #3</h4>
+    <p>
+This challenge will build off the previous challenge and will build an even more complex data transformation on the implementation of an image. It will continue to work with object-oriented programming and multidimensional arrays.
+    </p>  
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#3">Show</button>
+
+  </div>
+
+  <div class="box">
+    <div id="3" class="collapse">
+<pre><code class="language-ruby">class Image 
+
+    def initialize(array)  
+        @array = array  
+    end  
+
+
+    def blur (distance)
+        distance.times do
+
+           @arr = []
+            array_track = -1
+            
+            @array.each do |subarray|
+                
+                subarray_track = -1
+                array_track += 1
+                subarr = []
+                
+                subarray.each do |i|
+                    
+                    subarray_track += 1
+                    
+                    if i == 1
+                        subarr &lt;&lt; 1
+                    elsif subarray[subarray_track + 1] == 1 &amp;&amp; subarray_track != subarray.length
+                        subarr &lt;&lt; 1
+                    elsif subarray[subarray_track - 1] == 1 &amp;&amp; subarray_track &gt; 0
+                        subarr &lt;&lt; 1
+                    elsif @array[array_track - 1][subarray_track] == 1 &amp;&amp; array_track &gt; 0  
+                        subarr &lt;&lt; 1
+                    elsif @array[array_track + 1].nil? == false &amp;&amp; @array[array_track + 1][subarray_track] == 1
+                        subarr &lt;&lt; 1
+                    else 
+                        subarr &lt;&lt; 0
+                    end
+                end
+                @arr &lt;&lt; subarr
+            end
+            @array = @arr
+        end
+         @array.each do |i|
+            puts &quot;#{i.join('')}&quot;
+        end
+    end
+end  
+
+image = Image.new([
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+])
+
+image.blur(5)</pre></code>
+    </div>
+  </div>
+  </body>
+
+</html>
